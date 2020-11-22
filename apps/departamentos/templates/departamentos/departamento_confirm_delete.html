@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Deletar Departamento{% endblock %}
+{% block main%}
+
+<form method="post">
+    {% csrf_token %}
+    <h3 class="text-info title">Deseja deletar o departamento {{object}}?</h3>
+    <button type="submit" class="btn btn-danger">Deletar</button>
+</form>
+
+{% endblock %}

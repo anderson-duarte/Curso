@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Departamentos{% endblock %}
+{% block main%}
+<h3 class="text-info title">Lista de Departamentos</h3>
+<hr>
+<a href="{% url 'departamento:novo_departamento' %}" class="btn btn-success">Novo Departamento</a>
+<hr>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Empresa</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Deletar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for departamento in object_list %}
+      <tr>
+        <th scope="row">{{departamento.id}}</th>
+        <td>{{departamento}}</td>
+        <td>{{departamento.empresa.nome}}</td>
+        <td><a href="{% url 'departamento:editar_departamento' departamento.id %}"
+        class="btn btn-info">Editar</a></td>
+        <td><a href="{% url 'departamento:deletar_departamento' departamento.id %}"
+        class="btn btn-danger">Deletar</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

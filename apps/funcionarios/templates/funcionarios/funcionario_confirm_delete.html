@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Deletar Funcionários{% endblock %}
+{% block main%}
+
+<form method="post">
+    {% csrf_token %}
+    <h3 class="text-info title">Deseja deletar  {{object}}?</h3>
+    <button type="submit" class="btn btn-danger">Deletar</button>
+</form>
+
+{% endblock %}

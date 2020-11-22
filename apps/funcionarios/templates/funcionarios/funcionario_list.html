@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Funcionários{% endblock %}
+{% block main%}
+<h3 class="text-info title">Lista de Funcionários</h3>
+<hr>
+<a href="{% url 'funcionarios:funcionarios_novo' %}" class="btn btn-success">Novo Funcionario</a>
+<hr>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Empresa</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Deletar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for funcionario in object_list %}
+      <tr>
+        <th scope="row">{{funcionario.id}}</th>
+        <td>{{funcionario}}</td>
+        <td>{{funcionario.empresa.nome}}</td>
+        <td><a href="{% url 'funcionarios:edit_funcionario' funcionario.pk %}"
+        class="btn btn-info">Editar</a></td>
+        <td><a href="{% url 'funcionarios:delete_funcionario' funcionario.pk %}"
+        class="btn btn-danger">Deletar</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
