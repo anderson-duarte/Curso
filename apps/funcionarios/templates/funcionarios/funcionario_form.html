@@ -5,17 +5,67 @@
 {% block main %}
     <div class="row">
         <div class="col-md-4">
+            <h3 class="text-info title">Perfil Funionário</h3>
         <form method="post">
         {% csrf_token %}
         {{form | bootstrap }}
         <button type="submit" class="btn btn-block btn-success">Salvar</button>
         </form>
+            <hr>
         </div>
-    </div><br>
-    <div class="row">
-        <div class="col-md-4">
-            <a href="{% url 'documentos:documentocreate' %}" class="btn btn-block btn-info">Adicionar documento</a><br>
-            <a href="{% url 'documentos:documentolist' %}" class="btn btn-block btn-danger">Listar documento</a>
+        <div class="col-md-8">
+            <h3 class="text-info title">Documentos</h3>
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Visualizar</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Deletar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for documento in object.documento_set.all %}
+                  <tr>
+                    <td>{{documento}}</td>
+                    <td><a href="{{documento.arquivo.url}}">Visualizar</a></td>
+                    <td><a href="{% url 'documentos:documentoEditar' documento.pk %}"
+                    class="btn btn-info">Editar</a></td>
+                    <td><a href="{% url 'documentos:documentoDelete' documento.pk %}"
+                    class="btn btn-danger">Deletar</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <hr>
+              <a href="{% url 'documentos:documentocreate' %}" class="btn btn-block btn-info">Adicionar documento</a><br>
+              <hr>
+
+            <h3 class="text-info title">Banco de Horas</h3>
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Hora_Extra</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Deletar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for hora in object.registrohoraextra_set.all %}
+                  <tr>
+                    <td>{{hora}}</td>
+                    <td>{{hora.hora_extra}}</td>
+                    <td><a href="{% url 'horas_extras:horas_extras_edit' hora.pk %}"
+                    class="btn btn-info">Editar</a></td>
+                    <td><a href="{% url 'horas_extras:horas_extras_delete' hora.pk %}"
+                    class="btn btn-danger">Deletar</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            <hr>
+            <a href="{% url 'horas_extras:horas_extras-add' %}" class="btn btn-block btn-info">Registrar Hora Extra</a>
         </div>
     </div>
 {% endblock %}

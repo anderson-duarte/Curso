@@ -19,14 +19,6 @@ class DocumentosCreate(CreateView):
         return super(DocumentosCreate, self).form_valid(form)
 
 
-class DocumentosList(ListView):
-    model = Documento
-
-    def get_queryset(self):
-        funcionario = self.request.user.funcionario
-        return Documento.objects.filter(pertence=funcionario)
-
-
 class DocumentosDelete(DeleteView):
     model = Documento
     success_url = reverse_lazy('documentos:documentolist')
