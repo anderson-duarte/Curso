@@ -22,7 +22,7 @@ class HorasExtrasCreate(CreateView):
 class HorasExtrasEdit(UpdateView):
     model = RegistroHoraExtra
     form_class = HoraExtraForm
-    success_url = reverse_lazy('horas_extras:horas_extras-lista')
+    success_url = reverse_lazy('funcionarios:funcionarios_list')
 
     def get_form_kwargs(self):
         kwargs = super(HorasExtrasEdit, self).get_form_kwargs()
@@ -32,4 +32,4 @@ class HorasExtrasEdit(UpdateView):
 
 class HorasExtrasDelete(DeleteView):
     model = RegistroHoraExtra
-    success_url = reverse_lazy('horas_extras:horas_extras-lista')
+    success_url = reverse_lazy('funcionarios:funcionarios_list')
