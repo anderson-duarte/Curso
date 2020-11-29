@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Sum
+
 from apps.funcionarios.models import Funcionario
 
 
@@ -10,4 +12,8 @@ class RegistroHoraExtra(models.Model):
 
     def __str__(self):
         return self.motivo
+
+    @property
+    def total_horas_extras(self):
+        return self.registrohoraextra_set.all().aggregate(Sum('hora_extra'))['hora_extra__sum']
 

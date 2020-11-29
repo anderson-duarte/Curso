@@ -63,6 +63,8 @@
                   </tr>
                   {% endfor %}
                 </tbody>
+                <br>
+                <h5 class="text-info title">Total Horas: {{object.total_horas_extras}}</h5>
               </table>
             <hr>
             <a href="{% url 'horas_extras:horas_extras-add' %}" class="btn btn-block btn-info">Registrar Hora Extra</a>
