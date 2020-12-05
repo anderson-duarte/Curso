@@ -8,4 +8,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.DeletaFuncionario.as_view(), name='delete_funcionario'),
     path('', views.FuncionariosList.as_view(), name='funcionarios_list'),
     path('novo/', views.FuncionariosNovo.as_view(), name='funcionarios_novo'),
+    path('pdf-reportlab/', views.some_view, name='pdf-reportlab'),
 ]

@@ -6,6 +6,8 @@ from django.views.generic import (UpdateView,
                                   DeleteView,
                                   CreateView)
 from .models import Funcionario
+import io
+from django.http import FileResponse, HttpResponse
 
 
 class EditarFuncionario(UpdateView):
@@ -49,3 +51,30 @@ class FuncionariosNovo(CreateView):
         funcionario.empresa = self.request.user.funcionario.empresa
         funcionario.user = User.objects.create_user(username=usuario)
         return super(FuncionariosNovo, self).form_valid(form)
+
+
+def some_view(request):
+    response = HttpResponse(content_type='aplication/pdf')
+    response['Content-Disposition'] = 'attachment; filename="mypdf.pdf'
+
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    p.drawString(10, 810, 'Hello World!')
+
+    palavras = ['palavra1', 'palavra2', 'pallavra3']
+
+    y=790
+
+    for palavra in palavras:
+        p.drawString(10, y, palavra)
+        y -= 40
+
+    p.showPage()
+    p.save()
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+
+    return response
