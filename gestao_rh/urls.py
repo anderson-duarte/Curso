@@ -21,9 +21,15 @@ from rest_framework import routers
 from django.conf.urls import url
 from apps.core.views import UserViewSet, GroupViewSet
 
+from apps.funcionarios.api.views import FuncionarioViewSet
+from apps.registro_hora_extra.api.views import HoraExtraViewSet
+
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+
+router.register(r'funcionarios_api', FuncionarioViewSet)
+router.register(r'hora_api', HoraExtraViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

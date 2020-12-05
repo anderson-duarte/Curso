@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.registro_hora_extra',
     'bootstrapform',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
